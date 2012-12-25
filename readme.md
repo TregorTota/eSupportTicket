@@ -98,7 +98,7 @@
 			<td>Permissions to close a ticket finally.</td>
 		</tr>
 		<tr style="align: left;">
-			<td></td>
+			<td>msupportticket.ticketlist</td>
 			<td>/ticketlist</td>
 			<td>Permissions to see a list of all tickets which are not closed and not assigned to someone.</td>
 		</tr>		
