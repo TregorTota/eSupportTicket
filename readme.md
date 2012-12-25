@@ -110,12 +110,12 @@
 		<tr><td colspan="3"><i><b>Bundled Permissions</b></i></td></tr>
 		<tr style="align: left;">
 			<td>msupportticket.user</td>
-			<td colspan="2"><i>Contains:</i> msupportticket.addticket <br />
+			<td colspan="2"><i>Contains:</i> <br />msupportticket.addticket <br />
       msupportticket.shwoticket.own</td>
 		</tr>
 		<tr style="align: left;">
 			<td>msupportticket.moderative</td>
-			<td colspan="2"><i>Contains:</i> msupportticket.assignticket <br />
+			<td colspan="2"><i>Contains:</i> <br />msupportticket.assignticket <br />
       msupportticket.closeticket<br />
       msupportticket.showticket.all<br />
       msupportticket.controlticketchat<br />
