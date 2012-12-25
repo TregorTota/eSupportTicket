@@ -128,7 +128,7 @@
 <p>
 	As you see, the config is not big, there are only a couple of settings.
 </p>
-<h2>Storage</h2>
+<h3>Storage</h3>
 <p>
 	You can choose between <i>MySQL</i> and <i>FlatFile</i>.
 	<br />
