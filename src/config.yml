@@ -1,0 +1,11 @@
+#How many tickets per page?
+tickets_per_page: 4
+##Storage##
+# Storage Types: 'MySQL' or 'FlatFile'
+storage: 'MySQL'
+# MySQL Datas (only used if storage is MySQL)
+mysql_host: 'localhost'
+mysql_port: '3306'
+mysql_database: 'mydba'
+mysql_user: 'root' 
+mysql_password: ''

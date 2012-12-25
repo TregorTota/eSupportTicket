@@ -1,0 +1,61 @@
+name: eSupportTicket
+version: '100'
+main: de.ronyzzn.supticket.eSupportTicket
+author: ronyzzn
+description: eSupportTicket is a easy way to recive and send tickets.
+commands:
+  addticket:
+    usage: /<command> <Text>
+  closeticket:
+    usage: /<command> <TicketId>
+  mytickets:
+    usage: /<command> <Page>
+  assignticket:
+    usage: /<command> <TicketId>
+  viewticket:
+    usage: /<command> <TicketId>
+  opentc:
+    aliases: [openticketchat]
+    usage: /<command> <TicketId>
+  closetc:
+    aliases: [closeticketchat]
+    usage: /<command> <TicketId>
+  ticketlist:
+    usage: /<command> <Page>
+permissions:
+  msupportticket.moderator:
+    description: Gives access to all moderative commands.
+    children:
+      msupportticket.assignticket: true
+      msupportticket.closeticket: true
+      msupportticket.showticket.all: true
+      msupportticket.controlticketchat: true
+      msupportticket.addticket: true
+      msupportticket.ticketlist: true
+  msupportticket.user:
+    description: Gives access to all user command.
+    children:
+      msupportticket.addticket: true
+      msupportticket.shwoticket.own: true
+  msupportticket.addticket:
+    description: Allows you to create a new ticket.
+    default: op
+  msupportticket.assignticket:
+    description: Allows you to assign a ticket as yours.
+    default: op
+  msupportticket.closeticket:
+    description: Allows you to close a ticket.
+    default: op
+  msupportticket.showticket.all:
+    description: Allows you to see all tickets.
+    default: op
+  msupportticket.showticket.own:
+    description: Allows you to see only your own tickets.
+    deafult: op
+  msupportticket.controlticketchat:
+    description: Allows you to open and close a TicketChat.
+    default: op
+  msupportticket.ticketlist:
+    description: Allows you to see all tickets.
+    default: op
+    
