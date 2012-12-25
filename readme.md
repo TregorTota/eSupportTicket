@@ -6,7 +6,7 @@
 	permissions and there are already some special permissions for ranks like
 	<i>Moderator</i>. You can find more in the documentation.
 </p>
-<h3>Commands</h3>
+<h2>Commands</h2>
 <p>
 	Here you can read all commands and their use.
 	<br />
@@ -60,7 +60,7 @@
 		</tr>
 	</table>
 </p><p>
-<h3>Permissions</h3>
+<h2>Permissions</h2>
 	Here you can read all permission entries and their use.
 	<table width="80%" style="border-color: black;">
 		<tr>
@@ -122,7 +122,21 @@
       msupportticket.addticket<br />
       msupportticket.ticketlist<br /></td>
 		</tr>
-		
-		
 	</table>
+</p>
+<h2>Configuration</h2>
+<p>
+	As you see, the config is not big, there are only a couple of settings.
+</p>
+<h2>Storage</h2>
+<p>
+	You can choose between <i>MySQL</i> and <i>FlatFile</i>.
+	<br />
+	As <i>FlatFile</i>-System I have used <i>MexDB</i> (A nice Database-System 
+	by XemsDoom), unfortunately his Website is down, if it is online again, 
+	I will post a link. :) Thanks to XemsDoom!
+	<br />
+	For <i>MySQL</i> I have wrote my own class. :) MySQL is usefull if you will
+	connect <i>eSupportTicket</i> with your website. I am working on a function,
+	which will be called <i>WebTicket</i>.. So wait and see..
 </p>
