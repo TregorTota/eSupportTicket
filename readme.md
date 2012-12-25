@@ -1,5 +1,5 @@
 <h1>eSupportTicket - Easy ticket system for Bukkit.</h1><hr />
-<h3>What is eSupportTicket?</h3>
+<h2>What is eSupportTicket?</h2>
 <p>
 	<i>eSupportTicket</i> is a simple ticket system for the Bukkit API. It allows
 	to create tickes in an easy way. You can control all commands with some
@@ -131,12 +131,12 @@
 <h3>Storage</h3>
 <p>
 	You can choose between <i>MySQL</i> and <i>FlatFile</i>.
-	<br />
+	<br /><br />
 	As <i>FlatFile</i>-System I have used <i>MexDB</i> (A nice Database-System 
 	by XemsDoom), unfortunately his Website is down, if it is online again, 
 	I will post a link. :) Thanks to XemsDoom!
-	<br />
-	For <i>MySQL</i> I have wrote my own class. :) MySQL is usefull if you will
+	<br /><br />
+	For <i>MySQL</i> I have wrote my own class. :) MySQL is usefull if you want to
 	connect <i>eSupportTicket</i> with your website. I am working on a function,
 	which will be called <i>WebTicket</i>.. So wait and see..
 </p>
