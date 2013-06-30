@@ -56,6 +56,7 @@ public class Command_ShowTicket implements CommandExecutor {
 			try {
 				if(!adm && !eSupportTicket.st.getSender(ticketId).equalsIgnoreCase(sender.getName())) {
 					sender.sendMessage(ChatColor.GOLD + "You are only allowed to see your own tickets!");
+                    return true;
 				}					
 					
 				ticket = eSupportTicket.st.getTicketById(ticketId);
