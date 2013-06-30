@@ -161,3 +161,11 @@ pip-log.txt
 
 # Mac crap
 .DS_Store
+
+# Maven structure stuff
+target/
+dependency-reduced-pom.xml
+
+# IntelliJ project files.
+.idea/
+*.iml
