@@ -19,6 +19,7 @@ package de.ronyzzn.supticket.Commands;
 
 import java.util.List;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,7 +34,7 @@ public class Command_TicketList implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§6The console can not view tickets.");
+			sender.sendMessage(ChatColor.GOLD + "The console can not view tickets.");
 			return true;
 		}
 		
@@ -41,33 +42,33 @@ public class Command_TicketList implements CommandExecutor {
 		List<String[]> tickets = eSupportTicket.st.getAllTickets();
 		
 		if(!player.hasPermission("msupportticket.ticketlist")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
 		if(args.length == 0) {		
-			player.sendMessage("§9=== -§cAdmin§9 Tickets- ===");
-			player.sendMessage("§b#Here are all tickets listed, which are open and not assigned to someone.");
-			player.sendMessage("§eTickets 1-" + eSupportTicket.config.getString("tickets_per_page") + " from " + tickets.size());
+			player.sendMessage(ChatColor.BLUE + "=== -" + ChatColor.GOLD + "Admin" + ChatColor.BLUE + " Tickets- ===");
+			player.sendMessage(ChatColor.AQUA + "#Here are all tickets listed, which are open and not assigned to someone.");
+			player.sendMessage(ChatColor.YELLOW + "Tickets 1-" + eSupportTicket.config.getString("tickets_per_page") + " of " + tickets.size());
 			
 			try {
 			showOwnTickets(0, Integer.parseInt(eSupportTicket.config.getString("tickets_per_page")), player, tickets);
 			} catch(NumberFormatException e) {
-				player.sendMessage("§cError! §6tickets_per_page must be a number! Please contact a admin!");
+                player.sendMessage(ChatColor.RED + "Error! tickets_per_page must be a number! Please contact an admin!");
 				return true;
 			}
 			
 			return true;
 		} else if(args.length == 1) {
 			if(args[0].equalsIgnoreCase("1")) {
-				player.sendMessage("§9=== -§cAdmin§9 Tickets- ===");
-				player.sendMessage("§b#Here are all tickets listed, which are open and not assigned to someone.");
-				player.sendMessage("§eTickets 1-" + eSupportTicket.config.getString("tickets_per_page") + " from " + tickets.size());
+                player.sendMessage(ChatColor.BLUE + "=== -" + ChatColor.GOLD + "Admin" + ChatColor.BLUE + " Tickets- ===");
+				player.sendMessage(ChatColor.AQUA + "#Here are all tickets listed, which are open and not assigned to someone.");
+				player.sendMessage(ChatColor.YELLOW + "Tickets 1-" + eSupportTicket.config.getString("tickets_per_page") + " of " + tickets.size());
 				
 				try {
 				showOwnTickets(0, Integer.parseInt(eSupportTicket.config.getString("tickets_per_page")), player, tickets);
 				} catch(NumberFormatException e) {
-					player.sendMessage("§cError! §6tickets_per_page must be a number! Please contact a admin!");
+                    player.sendMessage(ChatColor.RED + "Error! tickets_per_page must be a number! Please contact an admin!");
 					return true;
 				}
 				
@@ -76,12 +77,12 @@ public class Command_TicketList implements CommandExecutor {
 			
 			try {
 				int startValue = (Integer.parseInt(args[0]) - 1) * Integer.parseInt(eSupportTicket.config.getString("tickets_per_page"));
-				player.sendMessage("§9=== -§cAdmin§9 Tickets- ===");
-				player.sendMessage("§b#Here are all tickets listed, which are open and not assigned to someone.");
-				player.sendMessage("§eTickets " + (startValue + 1) + " - " + (startValue + Integer.parseInt(eSupportTicket.config.getString("tickets_per_page"))) + " from " + tickets.size());
+                player.sendMessage(ChatColor.BLUE + "=== -" + ChatColor.GOLD + "Admin" + ChatColor.BLUE + " Tickets- ===");
+				player.sendMessage(ChatColor.AQUA + "#Here are all tickets listed, which are open and not assigned to someone.");
+				player.sendMessage(ChatColor.YELLOW + "Tickets " + (startValue + 1) + " - " + (startValue + Integer.parseInt(eSupportTicket.config.getString("tickets_per_page"))) + " from " + tickets.size());
 				showOwnTickets(startValue, startValue + 5, player, tickets);	
 			} catch(NumberFormatException e) {
-				player.sendMessage("§cError! §6tickets_per_page must be a number! Please contact a admin!");
+                player.sendMessage(ChatColor.RED + "Error! tickets_per_page must be a number! Please contact an admin!");
 				return true;
 			}
 			
@@ -94,15 +95,15 @@ public class Command_TicketList implements CommandExecutor {
 		int count = 0;
 		for(String[] ticket : tickets) {
 			if(count >= start && count < end) {
-				String status = "§aOPEN";
+				String status = ChatColor.GREEN + "OPEN";
 				try {
 					if(eSupportTicket.st.isClosed(ticket[0]))
-						status = "§cCLOSED";				
+						status = ChatColor.RED + "CLOSED";
 				} catch (NoTicketFoundException e) { e.printStackTrace(); }
 				
-				player.sendMessage("§7Ticket §f" + ticket[0] + "§7, Assigned to: §f" + ticket[4]);
-				player.sendMessage("     §7Status: " + status);	
-				player.sendMessage("§9--------");
+				player.sendMessage(ChatColor.GRAY + "Ticket " + ChatColor.WHITE + ticket[0] + ChatColor.GRAY + ", Assigned to: " + ChatColor.WHITE + ticket[4]);
+				player.sendMessage("     " + ChatColor.GRAY + "Status: " + status);
+				player.sendMessage(ChatColor.BLUE + "--------");
 			}
 			count++;
 		}

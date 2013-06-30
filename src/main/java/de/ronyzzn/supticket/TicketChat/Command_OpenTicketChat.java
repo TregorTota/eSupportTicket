@@ -18,6 +18,7 @@
 package de.ronyzzn.supticket.TicketChat;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,14 +33,14 @@ public class Command_OpenTicketChat implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§6The console can not open a ticket chat.");
+			sender.sendMessage(ChatColor.GOLD + "The console can not open a ticket chat.");
 			return true;
 		}
 
 		Player player = (Player) sender;
 		
 		if(!player.hasPermission("msupportticket.controlticketchat")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
@@ -51,34 +52,34 @@ public class Command_OpenTicketChat implements CommandExecutor {
 				target = Bukkit.getPlayer(eSupportTicket.st.getSender(ticketId));
 				
 				if(eSupportTicket.st.isClosed(ticketId)) {
-					sender.sendMessage("§6This ticket is closed!");
+					sender.sendMessage(ChatColor.GOLD + "This ticket is closed!");
 					return true;
 				}
 				
 			} catch (NoTicketFoundException e) { 
-				sender.sendMessage("§6This ticket can not be found!");
+				sender.sendMessage(ChatColor.GOLD + "This ticket can not be found!");
 				return true;
 			}
 			
 			if(target == null) {
-				sender.sendMessage("§6The sender of this ticket is not online!");
+				sender.sendMessage(ChatColor.GOLD + "The sender of this ticket is not online!");
 				return true;
 			}
 			
 			if(eSupportTicket.ticketChat.containsKey(player) || eSupportTicket.ticketChat.containsValue(player)) {
-				player.sendMessage("§6You are already in a ticket chat!");
+				player.sendMessage(ChatColor.GOLD + "You are already in a ticket chat!");
 				return true;
 			}
 			
-			target.sendMessage("§9==== -New TicketChat opened- ====");
-			target.sendMessage("§7-- " + player.getName() + " opened this TicketChat on ticket §a" + ticketId + "§7. --");
-			target.sendMessage("§6Everything you are writing now, belongs to this TicketChat!!");
-			target.sendMessage("§9--------");
+			target.sendMessage(ChatColor.BLUE + "==== -New TicketChat opened- ====");
+			target.sendMessage(ChatColor.GRAY + "-- " + player.getName() + " opened this TicketChat on ticket " + ChatColor.GREEN + ticketId + ChatColor.GRAY + ". --");
+			target.sendMessage(ChatColor.GOLD + "Everything you are writing now, belongs to this TicketChat!!");
+			target.sendMessage(ChatColor.BLUE + "--------");
 			
-			player.sendMessage("§9==== -New TicketChat opened- ====");
-			player.sendMessage("§7-- You have opened this TicketChat on ticket §a" + ticketId + "§7. --");
-			player.sendMessage("§6Everything you are writing now, belongs to this TicketChat!!");
-			player.sendMessage("§9--------");
+			player.sendMessage(ChatColor.BLUE + "==== -New TicketChat opened- ====");
+            player.sendMessage(ChatColor.GRAY + "-- You have opened this TicketChat on ticket " + ChatColor.GREEN + ticketId + ChatColor.GRAY + ". --");
+			player.sendMessage(ChatColor.GOLD + "Everything you are writing now, belongs to this TicketChat!!");
+			player.sendMessage(ChatColor.BLUE + "--------");
 			
 			eSupportTicket.ticketChat.put(player, target);
 			return true;

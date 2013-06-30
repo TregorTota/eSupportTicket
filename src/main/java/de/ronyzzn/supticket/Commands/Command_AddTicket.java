@@ -20,6 +20,7 @@ package de.ronyzzn.supticket.Commands;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -33,13 +34,13 @@ public class Command_AddTicket implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§cThe console is not able to create tickets!");
+			sender.sendMessage(ChatColor.RED + "The console is not able to create tickets!");
 			return true;
 		}
 		
 		Player player = (Player) sender;
 		if(!player.hasPermission("msupportticket.addticket")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
@@ -54,7 +55,7 @@ public class Command_AddTicket implements CommandExecutor {
 			
 			eSupportTicket.st.addTicket(send, date, message.toString());
 			
-			player.sendMessage("§aYour ticket was saved.");
+			player.sendMessage(ChatColor.GREEN + "Your ticket was saved.");
 			return true;
 		}
 		

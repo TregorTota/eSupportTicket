@@ -17,6 +17,7 @@
 */
 package de.ronyzzn.supticket.Commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -30,17 +31,17 @@ public class Command_CloseTicket implements CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		
 		if(!sender.hasPermission("msupportticket.closeticket")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
 		if(args.length == 1) {
-			String ticketId = args[0].toString();
+			String ticketId = args[0];
 			
 			//Check if ticket is already assigned and if the ticket exists..
 			try {
 				if(eSupportTicket.st.isClosed(ticketId)) {
-					sender.sendMessage("§6This ticket is already closed.");
+					sender.sendMessage(ChatColor.GOLD + "This ticket is already closed.");
 					return true;
 				}
 				
@@ -48,11 +49,11 @@ public class Command_CloseTicket implements CommandExecutor {
 				eSupportTicket.st.closeTicket(ticketId);
 				
 			} catch (NoTicketFoundException e) {
-				sender.sendMessage("§6Ticket " + ticketId + " can not be found.");
+				sender.sendMessage(ChatColor.GOLD + "Ticket " + ticketId + " can not be found.");
 				return true;
 			}
 			
-			sender.sendMessage("§aTicket " + ticketId + " is now closed.");
+			sender.sendMessage(ChatColor.GREEN + "Ticket " + ticketId + " is now closed.");
 			return true;
 		}
 		

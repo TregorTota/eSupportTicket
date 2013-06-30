@@ -17,6 +17,7 @@
 */
 package de.ronyzzn.supticket.Commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,13 +32,13 @@ public class Command_AssignTicket implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§cThe console is not able to assign tickets!");
+			sender.sendMessage(ChatColor.RED + "The console is not able to assign tickets!");
 			return true;
 		}
 		
 		Player player = (Player) sender;
 		if(!player.hasPermission("msupportticket.assignticket")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
@@ -47,7 +48,7 @@ public class Command_AssignTicket implements CommandExecutor {
 			//Check if ticket is already assigned and if the ticket exists..
 			try {
 				if(eSupportTicket.st.isAssigned(ticketId)) {
-					player.sendMessage("§6This ticket is already assigned to " + eSupportTicket.st.getAssignedTo(ticketId) + ".");
+					player.sendMessage(ChatColor.GOLD + "This ticket is already assigned to " + eSupportTicket.st.getAssignedTo(ticketId) + ".");
 					return true;
 				}
 				
@@ -55,11 +56,11 @@ public class Command_AssignTicket implements CommandExecutor {
 				eSupportTicket.st.assignTicket(ticketId, player.getName());
 				
 			} catch (NoTicketFoundException e) {
-				player.sendMessage("§6Ticket " + ticketId + " can not be found.");
+				player.sendMessage(ChatColor.GOLD + "Ticket " + ticketId + " can not be found.");
 				return true;
 			}
 			
-			player.sendMessage("§aYou are now assigned to ticket §b" + ticketId + "§a.");
+			player.sendMessage(ChatColor.GREEN + "You are now assigned to ticket " + ChatColor.AQUA + ticketId + ChatColor.GREEN+ ".");
 			return true;
 		}
 		

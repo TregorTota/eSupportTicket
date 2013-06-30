@@ -17,6 +17,7 @@
 */
 package de.ronyzzn.supticket.Commands;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -31,7 +32,7 @@ public class Command_ShowTicket implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§6The console can not view tickets.");
+			sender.sendMessage(ChatColor.GOLD + "The console can not view tickets.");
 			return true;
 		}
 		
@@ -43,40 +44,40 @@ public class Command_ShowTicket implements CommandExecutor {
 		}
 		
 		if(!adm && !player.hasPermission("msupportticket.showticket.own")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
 		if(args.length == 1) {
-			String ticketId = args[0].toString();
+			String ticketId = args[0];
 			String[] ticket = null;
 			
 			//Check if ticket is closed and if the ticket exists..
 			try {
 				if(!adm && !eSupportTicket.st.getSender(ticketId).equalsIgnoreCase(sender.getName())) {
-					sender.sendMessage("§6You are only allowed to see your own tickets!");
+					sender.sendMessage(ChatColor.GOLD + "You are only allowed to see your own tickets!");
 				}					
 					
 				ticket = eSupportTicket.st.getTicketById(ticketId);
 				
 				if(eSupportTicket.st.isClosed(ticketId)) {
-					sender.sendMessage("§6This ticket is closed.");
+					sender.sendMessage(ChatColor.GOLD + "This ticket is closed.");
 					return true;
 				}		
 				
 			} catch (NoTicketFoundException e) {
-				sender.sendMessage("§6Ticket " + ticketId + " can not be found.");
+				sender.sendMessage(ChatColor.GOLD + "Ticket " + ticketId + " can not be found.");
 				return true;
 			}
 			
 			
 			
-			player.sendMessage("§9=== -Ticket " + ticketId + "- ====");
-			if(adm) player.sendMessage("§7Sender: §f" + ticket[1]);
-			player.sendMessage("§7Assigned to: §f" + ticket[4]);
-			player.sendMessage("§7Creation date: §f" + ticket[2]);
-			player.sendMessage("§7Message: §f" + ticket[3]);
-			player.sendMessage("§9--------");
+			player.sendMessage(ChatColor.BLUE + "=== -Ticket " + ticketId + "- ====");
+			if(adm) player.sendMessage(ChatColor.GRAY + "Sender: " + ChatColor.WHITE + ticket[1]);
+			player.sendMessage(ChatColor.GRAY + "Assigned to: " + ChatColor.WHITE + ticket[4]);
+			player.sendMessage(ChatColor.GRAY + "Creation date: " + ChatColor.WHITE + ticket[2]);
+			player.sendMessage(ChatColor.GRAY + "Message: " + ChatColor.WHITE + ticket[3]);
+			player.sendMessage(ChatColor.BLUE + "--------");
 			
 			return true;
 		}

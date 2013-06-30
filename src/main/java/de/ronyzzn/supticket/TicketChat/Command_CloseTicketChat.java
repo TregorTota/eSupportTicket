@@ -19,6 +19,7 @@ package de.ronyzzn.supticket.TicketChat;
 
 import java.util.Map.Entry;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,32 +33,32 @@ public class Command_CloseTicketChat implements CommandExecutor {
 	@Override
 	public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
 		if(sender instanceof ConsoleCommandSender) {
-			sender.sendMessage("§6The console can not open a ticket chat.");
+			sender.sendMessage(ChatColor.GOLD + "The console can not open a ticket chat.");
 			return true;
 		}
 
 		Player player = (Player) sender;
 		
 		if(!player.hasPermission("msupportticket.controlticketchat")) {
-			sender.sendMessage("§cYou don't have permission!");
+			sender.sendMessage(ChatColor.RED + "You don't have permission!");
 			return true;
 		}
 		
 		if(args.length == 0) {
 			if(!eSupportTicket.ticketChat.containsKey(player) && !eSupportTicket.ticketChat.containsValue(player)) {
-				player.sendMessage("§6There is no ticket chat open!");
+				player.sendMessage(ChatColor.GOLD + "There is no ticket chat open!");
 			}
 			
 			for(Entry<Player, Player> et : eSupportTicket.ticketChat.entrySet()) {
 				if(et.getKey() == player) {
 					eSupportTicket.ticketChat.remove(player);
-					et.getValue().sendMessage("§9=== TicketChat Closed. ====");
+					et.getValue().sendMessage(ChatColor.BLUE + "=== TicketChat Closed. ====");
 				} else if(et.getValue() == player){
 					eSupportTicket.ticketChat.remove(et.getKey());
-					et.getKey().sendMessage("§9=== TicketChat Closed. ====");
+					et.getKey().sendMessage(ChatColor.BLUE + "=== TicketChat Closed. ====");
 				}
 				
-				player.sendMessage("§9=== TicketChat Closed. ====");
+				player.sendMessage(ChatColor.BLUE + "=== TicketChat Closed. ====");
 			}
 			
 			return true;			

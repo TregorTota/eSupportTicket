@@ -19,6 +19,7 @@ package de.ronyzzn.supticket.TicketChat;
 
 import java.util.Map.Entry;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -34,10 +35,10 @@ public class TicketChatBreakListener implements Listener {
 			for(Entry<Player, Player> et : eSupportTicket.ticketChat.entrySet()) {
 				if(et.getKey() == event.getPlayer()) {
 					eSupportTicket.ticketChat.remove(event.getPlayer());
-					et.getValue().sendMessage("§9==== TicketChat Closed. §6Reason: Patner left the game.§9====");
+					et.getValue().sendMessage(ChatColor.BLUE + "==== TicketChat Closed. " + ChatColor.GOLD + "Reason: Partner left the game. " + ChatColor.BLUE + "====");
 				} else if(et.getValue() == event.getPlayer()){
 					eSupportTicket.ticketChat.remove(et.getKey());
-					et.getKey().sendMessage("§9==== TicketChat Closed. §6Reason: Patner left the game. §9====");
+                    et.getKey().sendMessage(ChatColor.BLUE + "==== TicketChat Closed. " + ChatColor.GOLD + "Reason: Partner left the game. " + ChatColor.BLUE + "====");
 				}
 			}
 		}

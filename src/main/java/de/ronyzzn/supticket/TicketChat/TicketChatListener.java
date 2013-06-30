@@ -19,6 +19,7 @@ package de.ronyzzn.supticket.TicketChat;
 
 import java.util.Map.Entry;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -43,8 +44,8 @@ public class TicketChatListener implements Listener {
 			
 			if(target != null) {
 				event.setCancelled(true);
-				event.getPlayer().sendMessage("§7[§9TicketChat§7] " + event.getPlayer().getName() + ": §f" + event.getMessage());
-				target.sendMessage("§7[§9TicketChat§7] " + event.getPlayer().getName() + " §f" + event.getMessage());
+				event.getPlayer().sendMessage(ChatColor.GRAY + "[" + ChatColor.BLUE + "TicketChat" + ChatColor.GRAY + "] " + event.getPlayer().getName() + ": " + ChatColor.WHITE + event.getMessage());
+				target.sendMessage(ChatColor.GRAY + "[" + ChatColor.BLUE + "TicketChat" + ChatColor.GRAY + "] " + event.getPlayer().getName() + " " + ChatColor.WHITE + event.getMessage());
 			}			
 		}
 	}
